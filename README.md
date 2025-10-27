@@ -150,9 +150,3 @@ You can expand this project by adding:
 Pull requests, improvements, and discussions are welcome.
 
 ⸻
-
-📄 License
-
-This project is open-source under the MIT License.
-
----
