@@ -1,35 +1,169 @@
-# qlearning-cliffwalking-agent
-# CliffWalking Tabular Q-Learning (Robotics – Spring 2023)
+# CliffWalking with Tabular Q-Learning
 
-This repository contains an implementation of **Tabular Q-Learning** applied to the
-`CliffWalking-v0` environment from OpenAI Gym.  
-The goal is to train an agent to learn optimal navigation from a start state to a goal state
-while avoiding the cliff, which resets the agent and yields a large negative penalty.
+This repository implements a reinforcement learning agent using **Tabular Q-Learning**
+to navigate the `CliffWalking-v0` environment provided by OpenAI Gym.
 
-This assignment implements and compares **two** learning strategies:
+The objective is to train an agent to reach a goal on a 4×12 grid while avoiding a
+dangerous cliff region that causes heavy penalties and resets.
 
-1. **Pure greedy action selection (no epsilon)**
-2. **Epsilon-greedy exploration with linear decay**
+Two variants of the learning strategy are implemented:
 
----
+- **Greedy policy** (no explicit exploration)
+- **Epsilon-greedy policy** with linear decay
 
-## 🧠 Problem Description
-
-CliffWalking is a classic reinforcement learning task:
-
-- Grid size: **4x12**
-- Start: bottom-left cell
-- Goal: bottom-right cell
-- Cliff: the cells between start and goal on the bottom row
-
-At each time step:
-- The agent receives **-1** reward
-- Falling into the cliff gives **-100** and restarts at the start state
-
-The objective is to reach the goal **while minimizing total punishment**.
+The agent learns optimal behavior through repeated interaction with the environment,
+gradually improving its decision-making using Q-values.
 
 ---
 
-## 🗺️ CliffWalking Map
+## 🗺 Environment Overview
 
-Below is a visual representation of the environment:
+The CliffWalking environment is represented as a 4×12 grid:
+
+S  .  .  .  .  .  .  .  .  .  .  .
+X  X  X  X  X  X  X  X  X  X  X  X
+.  .  .  .  .  .  .  .  .  .  .  .
+.  .  .  .  .  .  .  .  .  .  .  G
+
+- `S` → Start position  
+- `G` → Goal position  
+- `X` → Cliff cells (large negative reward + reset)
+
+At each step:
+- Moving yields **-1 reward**
+- Falling off the cliff yields **-100 reward**
+
+---
+
+## 🎯 Learning Objective
+
+The agent must:
+- Reach the goal efficiently
+- Avoid the cliff
+- Minimize total negative reward
+
+⸻
+
+🚀 Running the Code
+
+Greedy version
+
+python q_learning_greedy.py
+
+Epsilon-greedy version
+
+python q_learning_epsilon.py
+
+Plots will appear automatically showing rewards per episode.
+
+⸻
+
+🔁 Q-Learning Update Rule
+
+The agent updates its Q-values based on the Bellman optimality equation:
+
+[
+Q(s,a) \leftarrow Q(s,a) + \alpha [r + \gamma \max_{a’} Q(s’,a’) - Q(s,a)]
+]
+
+Where:
+	•	α = learning rate
+	•	γ = discount factor
+	•	r = reward
+	•	s′ = next state
+
+⸻
+
+⚠️ Exploration vs Exploitation
+
+Pure greedy policies can become stuck in suboptimal behavior.
+
+To avoid this, the epsilon-greedy method:
+	•	Uses random actions early (exploration)
+	•	Gradually reduces randomness (decay)
+	•	Exploits knowledge later
+
+⸻
+
+📈 Training Results
+
+Both implementations produce a plot of episode return across training.
+
+Typical behavior observed:
+	•	Greedy strategy learns slowly and often takes safe but longer paths
+	•	Epsilon-greedy converges to a shorter, more optimal route
+
+Example learning curve:
+
+(optional image if you export plots)
+
+⸻
+
+📊 Evaluation
+
+After training, the agent is tested without exploration:
+	•	Always selects the highest-valued action
+	•	Runs for multiple episodes
+	•	Success rate and average returns are printed
+
+⸻
+
+🧰 Hyperparameters
+
+Parameter	Value
+Episodes	1000
+Learning rate α	0.5
+Discount γ	0.9
+ε initial	1.0
+ε decay	0.001
+
+Feel free to experiment with them.
+
+⸻
+
+🧪 Experiment Ideas
+
+You can expand this project by adding:
+	•	SARSA comparison
+	•	Different ε decay strategies
+	•	Randomized start positions
+	•	Visualization of agent trajectories
+	•	Heatmaps of visited states
+
+⸻
+
+🧩 Key Concepts Demonstrated
+	•	Reinforcement learning fundamentals
+	•	Tabular value updates
+	•	Exploration strategies
+	•	Deterministic vs risky policy trade-offs
+	•	Convergence behavior
+
+⸻
+
+📷 Environment Figure
+
+If you include the map image in the repo, reference it here:
+
+![CliffWalking Map](cliff_map.png)
+
+
+⸻
+
+🔧 Compatibility
+	•	Gym (v0.26+) new step API supported
+	•	Python 3.8+
+
+⸻
+
+🤝 Contributions
+
+Pull requests, improvements, and discussions are welcome.
+
+⸻
+
+📄 License
+
+This project is open-source under the MIT License.
+
+---
