@@ -20,10 +20,8 @@ gradually improving its decision-making using Q-values.
 
 The CliffWalking environment is represented as a 4×12 grid:
 
-S  .  .  .  .  .  .  .  .  .  .  .
-X  X  X  X  X  X  X  X  X  X  X  X
-.  .  .  .  .  .  .  .  .  .  .  .
-.  .  .  .  .  .  .  .  .  .  .  G
+![CliffWalking Map](IMG_9942.jpeg)
+
 
 - `S` → Start position  
 - `G` → Goal position  
@@ -138,15 +136,6 @@ You can expand this project by adding:
 	•	Exploration strategies
 	•	Deterministic vs risky policy trade-offs
 	•	Convergence behavior
-
-⸻
-
-📷 Environment Figure
-
-If you include the map image in the repo, reference it here:
-
-![CliffWalking Map](IMG_9942.jpeg)
-
 
 ⸻
 
