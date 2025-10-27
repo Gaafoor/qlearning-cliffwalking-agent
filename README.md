@@ -145,7 +145,7 @@ You can expand this project by adding:
 
 If you include the map image in the repo, reference it here:
 
-![CliffWalking Map](cliff_map.png)
+![CliffWalking Map](IMG_9942.jpeg)
 
 
 ⸻
