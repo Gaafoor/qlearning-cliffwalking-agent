@@ -145,8 +145,5 @@ You can expand this project by adding:
 
 ⸻
 
-🤝 Contributions
-
-Pull requests, improvements, and discussions are welcome.
-
-⸻
+Author
+•	Mostafa Ahmed
